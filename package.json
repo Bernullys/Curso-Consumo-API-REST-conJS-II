@@ -1,0 +1,24 @@
+{
+  "name": "curso-consumo-api-rest-conjs-ii",
+  "version": "1.0.0",
+  "description": "Consumo de api rest (TMDB) con js ",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bernullys/Curso-Consumo-API-REST-conJS-II.git"
+  },
+  "keywords": [
+    "TMDB",
+    "movies",
+    "api"
+  ],
+  "author": "BADR <bernardoantoniod@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bernullys/Curso-Consumo-API-REST-conJS-II/issues"
+  },
+  "homepage": "https://github.com/Bernullys/Curso-Consumo-API-REST-conJS-II#readme"
+}
