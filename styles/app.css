@@ -1,0 +1,131 @@
+:root {
+    --dark-full: #164B60;
+    --dark-medium: #1B6B93;
+    --dark-light: #4FC0D0;
+    --green: #A2FF86;
+
+    --font-family-titles: 'Dosis', sans-serif;
+    --font-family-text: 'Red Hat Display', sans-serif;
+
+    --sm: 14px;
+    --md: 16px;
+    --lg: 18px;
+    --xl: 25px;
+}
+
+body {
+    margin: 0px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+}
+
+.container-nav-left ul,
+.container-nav-right ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 650px;
+    margin: 0px;
+}
+
+.container-nav-left ul li,
+.container-nav-right ul li {
+    text-decoration: none;
+    width: 200px;
+}
+
+.container-nav-left ul li a,
+.container-nav-right ul li a {
+    text-decoration: none;
+    font-size: large;
+    color: white;
+}
+
+.navs-container {
+    background-color: var(--dark-full);
+}
+
+.title-and-search-container {
+    background-color: #4FC0D0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 200px;
+    
+}
+
+.titles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-form {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    width: 70%;
+}
+
+.input-button-container {
+    display: flex;
+}
+
+.search-form input {
+    flex: 1;
+    width: 100%;
+    height: 48px;
+    padding: 0;
+    border: 0;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.search-form button {
+    width: 10%;
+    height: 48px;
+    padding: 0;
+    border: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    cursor: pointer;
+}
+
+.trending-title-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.trending-button {
+    height: 36px;
+    width: 150px;
+    background-color: var(--green);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.trending-movies-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.movie-poster {
+    height: 500px;
+}
+
+img {
+    width: 300px;
+    border-radius: 20px;
+}
