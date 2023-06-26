@@ -1,6 +1,7 @@
 // funcion para llamar a las peliculas en tendencia de dia a dia
-const API_BASE = "https://api.themoviedb.org/3"
-const END_POINT_TRENDING_DAY = "/trending/movie/day"
+const API_BASE = "https://api.themoviedb.org/3";
+const END_POINT_TRENDING_DAY = "/trending/movie/day";
+const GENRE_END_POINT = "/genre/movie/list";
 
 async function getTrendingMoviesPreview() {
     const response = await fetch(`${API_BASE}${END_POINT_TRENDING_DAY}?api_key=${API_KEY}`);
@@ -37,4 +38,30 @@ async function getTrendingMoviesPreview() {
     trendingMoviesContainer.append(...trendingMovies)
 
 }
+
+async function getCategoriesMoviesPrevie() {
+    const response = await fetch(`${API_BASE}${GENRE_END_POINT}?api_key=${API_KEY}`);
+    const data = await response.json();
+    console.log(data);
+
+    const categoriesMoviesContainer = document.querySelector(".categories-type-container");
+    const categoriesTypes = [];
+
+    data.genres.forEach(dataOfGenresMovies => {
+        const articleOfCategoriesMovies = document.createElement("article");
+        // articleOfTrendinfMovies.className = "trending-movies-article-container";
+
+        const categoryType = document.createElement("h3");
+        categoryType.textContent = dataOfGenresMovies.name;
+
+        articleOfCategoriesMovies.appendChild(categoryType);
+
+        categoriesTypes.push(articleOfCategoriesMovies);
+    }); 
+
+    categoriesMoviesContainer.append(...categoriesTypes)
+
+}
+
 getTrendingMoviesPreview();
+getCategoriesMoviesPrevie();
