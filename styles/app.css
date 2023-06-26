@@ -174,8 +174,14 @@ footer {
     justify-content: space-evenly;
 }
 
-.header2-container {
-    
+.heder2-direct-container {
+    background-color: var(--dark-medium);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .categories-type-container {
