@@ -71,5 +71,3 @@ async function getCategoriesMoviesPrevie() {
 
 }
 
-getTrendingMoviesPreview();
-getCategoriesMoviesPrevie();
