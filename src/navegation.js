@@ -27,24 +27,48 @@ function navigator () {
 //     hash[location.hash]()
 // }
 
-function trendPage() {
-    console.log("TRENDS!!!");
-}
+function homePage() {
+    console.log("HOME!!!");
 
-function searchPage() {
-    console.log("SEARCH!!!");
-}
+    arrowBtn.classList.add("inactive");
+    headerCategoryTitle.classList.add("inactive");
+    title.classList.remove("inactive");
+    searchForm.classList.remove("inactive");
 
-function moviePage() {
-    console.log("MOVIE!!!");
-}
+    trendingPreviewSection.classList.remove("inactive");
+    categoriesPreviewSection.classList.remove("inactive");
+    genericSection.classList.add("inactive");
+    movieDetailSection.classList.add("inactive");
+
+    getTrendingMoviesPreview();
+    getCategoriesMoviesPrevie();
+};
+
 
 function categoryPage() {
     console.log("CATEGORY!!!");
-}
 
-function homePage() {
-    console.log("HOME!!!");
-    getTrendingMoviesPreview();
-    getCategoriesMoviesPrevie();
-}
+    arrowBtn.classList.remove("inactive");
+    headerCategoryTitle.classList.add("inactive");
+    title.classList.add("inactive");
+    searchForm.classList.add("inactive");
+
+    trendingPreviewSection.classList.add("inactive");
+    categoriesPreviewSection.classList.add("inactive");
+    genericSection.classList.remove("inactive");
+    movieDetailSection.classList.add("inactive");
+};
+
+function trendPage() {
+    console.log("TRENDS!!!");
+};
+
+function searchPage() {
+    console.log("SEARCH!!!");
+};
+
+function moviePage() {
+    console.log("MOVIE!!!");
+};
+
+

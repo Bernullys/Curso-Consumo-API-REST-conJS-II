@@ -28,13 +28,14 @@ const trendingMoviePreviewList = document.querySelector(".trending-movie-poster-
 const trendingBtn = document.querySelector(".trending-button");
 
 //const categoriesPreviewList=document.querySelector('.categoriesPreview-list');
-const categoriesPreviewList = documet.querySelector(".categories-type-container");
+const categoriesPreviewList = document.querySelector(".categories-type-container");
 
 //const headerTitle=document.querySelector('.header-title');
 const headerTitle = document.querySelector(".header-title");
 
 //const headerCategoryTitle=document.querySelector('.header-title--categoryView');
-const headerCategoryTitle = document.querySelector(".header-title categoryView");
+const title = document.querySelector(".header-title");
+const headerCategoryTitle = document.querySelector(".categoryView");
 
 //const arrowBtn=document.querySelector('.header-arrow');
 const arrowBtn = document.querySelector(".header-arrow");

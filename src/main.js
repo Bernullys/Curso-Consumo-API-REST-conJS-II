@@ -17,7 +17,7 @@ async function getTrendingMoviesPreview() {
     const { data } = await api(`${END_POINT_TRENDING_DAY}`);
 
 
-    const trendingMoviesContainer = document.querySelector(".trending-movie-poster-description-container");
+    const trendingMoviePreviewList = document.querySelector(".trending-movie-poster-description-container");
     const trendingMovies = [];
 
     data.results.forEach(dataOfTrendingMovies => {
@@ -44,7 +44,7 @@ async function getTrendingMoviesPreview() {
         trendingMovies.push(articleOfTrendinfMovies);
     }); 
 
-    trendingMoviesContainer.append(...trendingMovies)
+    trendingMoviePreviewList.append(...trendingMovies)
 
 }
 
@@ -52,7 +52,7 @@ async function getCategoriesMoviesPrevie() {
     const { data } = await api(`${GENRE_END_POINT}`);
 
 
-    const categoriesMoviesContainer = document.querySelector(".categories-type-container");
+    const categoriesPreviewList = document.querySelector(".categories-type-container");
     const categoriesTypes = [];
 
     data.genres.forEach(dataOfGenresMovies => {
@@ -67,7 +67,7 @@ async function getCategoriesMoviesPrevie() {
         categoriesTypes.push(articleOfCategoriesMovies);
     }); 
 
-    categoriesMoviesContainer.append(...categoriesTypes)
+    categoriesPreviewList.append(...categoriesTypes)
 
 }
 

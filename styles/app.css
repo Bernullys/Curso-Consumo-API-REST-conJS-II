@@ -192,3 +192,11 @@ footer {
     flex-wrap: wrap;
     align-content:space-around;
 }
+
+.header-title {
+    color: var(--green);
+}
+
+.categoryView {
+    color: var(--green);
+}
