@@ -5,6 +5,7 @@
 
 //const headerSection=document.querySelector('#header');
 const headerSection = document.querySelector("#header");
+const headerContainerLong = document.querySelector(".header-container-long");
 
 //const trendingPreviewSection=document.querySelector('#trendingPreview');
 const trendingPreviewSection = document.querySelector("#trendingPreview");

@@ -48,7 +48,7 @@ async function getTrendingMoviesPreview() {
 
 }
 
-async function getCategoriesMoviesPrevie() {
+async function getCategoriesMoviesPreview() {
     const { data } = await api(`${GENRE_END_POINT}`);
 
 
