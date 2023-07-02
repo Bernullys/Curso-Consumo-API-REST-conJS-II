@@ -21,6 +21,8 @@ async function getTrendingMoviesPreview() {
     const trendingMovies = [];
 
     data.results.forEach(dataOfTrendingMovies => {
+        trendingMoviePreviewList.innerHTML = ""; //limpia cada vez
+
         const articleOfTrendinfMovies = document.createElement("article");
         articleOfTrendinfMovies.className = "trending-movies-article-container";
 
@@ -49,6 +51,8 @@ async function getTrendingMoviesPreview() {
 }
 
 async function getCategoriesMoviesPreview() {
+
+
     const { data } = await api(`${GENRE_END_POINT}`);
 
 
@@ -56,6 +60,8 @@ async function getCategoriesMoviesPreview() {
     const categoriesTypes = [];
 
     data.genres.forEach(dataOfGenresMovies => {
+        categoriesPreviewList.innerHTML = ""; // limpia cada vez
+
         const articleOfCategoriesMovies = document.createElement("article");
         // articleOfTrendinfMovies.className = "trending-movies-article-container";
 
