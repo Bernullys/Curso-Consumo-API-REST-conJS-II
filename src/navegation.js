@@ -72,6 +72,14 @@ function categoryPage() {
     categoriesPreviewSection.classList.add("inactive");
     genericSection.classList.remove("inactive");
     movieDetailSection.classList.add("inactive");
+
+    const [_, urlCategoryIdName] = location.hash.split("=");
+    const [urlCategoryId, urlCategoryName] = urlCategoryIdName.split("-");
+
+    headerCategoryTitle.textContent = urlCategoryName;
+
+    getMoviesByCategory(urlCategoryId);
+
 };
 
 function movieDetailPage() {

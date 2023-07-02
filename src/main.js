@@ -2,6 +2,7 @@
 const API_BASE = "https://api.themoviedb.org/3";
 const END_POINT_TRENDING_DAY = "/trending/movie/day";
 const GENRE_END_POINT = "/genre/movie/list";
+const MOVIES_BY_CATEGORIES_END_POINT = "/discover/movie";
 
 const api = axios.create({
     baseURL: "https://api.themoviedb.org/3",
@@ -52,9 +53,7 @@ async function getTrendingMoviesPreview() {
 
 async function getCategoriesMoviesPreview() {
 
-
     const { data } = await api(`${GENRE_END_POINT}`);
-
 
     const categoriesPreviewList = document.querySelector(".categories-type-container");
     const categoriesTypes = [];
@@ -63,10 +62,11 @@ async function getCategoriesMoviesPreview() {
         categoriesPreviewList.innerHTML = ""; // limpia cada vez
 
         const articleOfCategoriesMovies = document.createElement("article");
-        // articleOfTrendinfMovies.className = "trending-movies-article-container";
 
         const categoryType = document.createElement("h3");
         categoryType.textContent = dataOfGenresMovies.name;
+        categoryType.addEventListener("click", ()=> {
+            location.hash = `#category=${dataOfGenresMovies.id}-${dataOfGenresMovies.name}`});
 
         articleOfCategoriesMovies.appendChild(categoryType);
 
@@ -77,3 +77,44 @@ async function getCategoriesMoviesPreview() {
 
 }
 
+async function getMoviesByCategory(id) {
+    const { data } = await api(`${MOVIES_BY_CATEGORIES_END_POINT}`, { // se pasa un segundo parametro gracias a axios y segun la documentacion de la api, que necesita el with_genres, y este a su vez necesita el id de la categoria
+        params: {
+            with_genres: id,
+        },
+
+    });
+
+    const genericSection = document.querySelector(".genericList-container");
+    const genericMovies = [];
+
+    data.results.forEach(dataOfGenericMovies => {
+        genericSection.innerHTML = ""; //limpia cada vez
+
+        const articleOfGenericMovies = document.createElement("article");
+        articleOfGenericMovies.className = "trending-movies-article-container";//ojo con la clase
+
+        const genericMoviePoster = document.createElement("img");
+        const urlGenericMoviePoster = dataOfGenericMovies.backdrop_path;
+        const genericMovieId = dataOfGenericMovies.id; //ojo con el id
+        genericMoviePoster.src = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlGenericMoviePoster}`
+        genericMoviePoster.className = "movie-poster movie-image"; //ojo con la clase
+        genericMoviePoster.alt = genericMovieId;
+
+        const genericMovieTitle = document.createElement("h2");
+        genericMovieTitle.textContent = dataOfGenericMovies.title;
+
+        
+
+        // const trendingMovieVoteAverage = document.createElement("h3");
+        // trendingMovieVoteAverage.textContent = dataOfTrendingMovies.vote_average;
+
+        articleOfGenericMovies.appendChild(genericMoviePoster);
+        articleOfGenericMovies.appendChild(genericMovieTitle);
+
+        genericMovies.push(articleOfGenericMovies);
+    }); 
+
+    genericSection.append(...genericMovies)
+
+}

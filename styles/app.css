@@ -21,6 +21,10 @@ body {
     margin: 0px;
 }
 
+h3 {
+    cursor: pointer;
+}
+
 nav {
     display: flex;
     justify-content: space-between;
@@ -123,8 +127,8 @@ form {
 .trending-movies-container,
 .genericList-container {
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
 }
 .movie-poster {
     height: 700px;

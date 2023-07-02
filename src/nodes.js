@@ -15,6 +15,7 @@ const categoriesPreviewSection = document.querySelector("#categories-container")
 
 //const genericSection=document.querySelector('#genericList');
 const genericSection = document.querySelector("#genericList");
+const genericContainer = document.querySelector(".genericList-container");
 
 //const movieDetailSection=document.querySelector('#movieDetail');
 const movieDetailSection = document.querySelector("#movieDetail");
