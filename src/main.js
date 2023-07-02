@@ -3,6 +3,7 @@ const API_BASE = "https://api.themoviedb.org/3";
 const END_POINT_TRENDING_DAY = "/trending/movie/day";
 const GENRE_END_POINT = "/genre/movie/list";
 const MOVIES_BY_CATEGORIES_END_POINT = "/discover/movie";
+const SEARCH_MOVIES = "/search/movie";
 
 const api = axios.create({
     baseURL: "https://api.themoviedb.org/3",
@@ -90,6 +91,18 @@ async function getMoviesByCategory(id) {
     const { data } = await api(`${MOVIES_BY_CATEGORIES_END_POINT}`, { // se pasa un segundo parametro gracias a axios y segun la documentacion de la api, que necesita el with_genres, y este a su vez necesita el id de la categoria
         params: {
             with_genres: id,
+        },
+
+    });
+
+    createMovies(data.results, genericSection);
+    
+}
+
+async function getMoviesBySearch(query) {
+    const { data } = await api(`${SEARCH_MOVIES}`, { // se pasa un segundo parametro gracias a axios y segun la documentacion de la api, necesita un parametro que se llame query.
+        params: {
+            query,
         },
 
     });
