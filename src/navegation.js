@@ -25,6 +25,11 @@ function navigator () {
     } else{
         homePage();
     }
+
+    window.scrollTo({
+        top: 0,
+        behavior:'smooth',
+    });
 };
 
 // function navigator () {

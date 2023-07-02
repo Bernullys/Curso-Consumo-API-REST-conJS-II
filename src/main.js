@@ -14,40 +14,49 @@ const api = axios.create({
     },
 });
 
-async function getTrendingMoviesPreview() {
-    const { data } = await api(`${END_POINT_TRENDING_DAY}`);
+//Utils ó Helpers --- funciones para no repetir codigo
 
+function createMovies (arraysOfMovies, aContainer) {
 
-    const trendingMoviePreviewList = document.querySelector(".trending-movie-poster-description-container");
-    const trendingMovies = [];
+    aContainer.innerHTML = "";
+    const moviesArray = [];
 
-    data.results.forEach(dataOfTrendingMovies => {
-        trendingMoviePreviewList.innerHTML = ""; //limpia cada vez
+    arraysOfMovies.forEach(arrayOfMovie => {
+    
+        const articleContainer = document.createElement("article");
+        articleContainer.classList.add = "trending-movies-article-container";
 
-        const articleOfTrendinfMovies = document.createElement("article");
-        articleOfTrendinfMovies.className = "trending-movies-article-container";
+        const MoviePoster = document.createElement("img");
+        const urlMoviePoster = arrayOfMovie.poster_path;
+        const MovieId = arrayOfMovie.id;
+        MoviePoster.src = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlMoviePoster}`
+        MoviePoster.classList.add = "movie-poster movie-image";
+        MoviePoster.alt = MovieId;
 
-        const trendingMoviePoster = document.createElement("img");
-        const urlTrendingMoviePoster = dataOfTrendingMovies.poster_path;
-        const trendingMovieId = dataOfTrendingMovies.id;
-        trendingMoviePoster.src = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlTrendingMoviePoster}`
-        trendingMoviePoster.className = "movie-poster movie-image";
-        trendingMoviePoster.alt = trendingMovieId;
+        const MovieTitle = document.createElement("h2");
+        MovieTitle.textContent = arrayOfMovie.title;
 
-        const trendingMovieTitle = document.createElement("h2");
-        trendingMovieTitle.textContent = dataOfTrendingMovies.title;
+        const MovieVoteAverage = document.createElement("h3");
+        MovieVoteAverage.textContent = arrayOfMovie.vote_average;
 
-        const trendingMovieVoteAverage = document.createElement("h3");
-        trendingMovieVoteAverage.textContent = dataOfTrendingMovies.vote_average;
+        articleContainer.appendChild(MoviePoster);
+        articleContainer.appendChild(MovieTitle);
+        articleContainer.appendChild(MovieVoteAverage);
 
-        articleOfTrendinfMovies.appendChild(trendingMoviePoster);
-        articleOfTrendinfMovies.appendChild(trendingMovieTitle);
-        articleOfTrendinfMovies.appendChild(trendingMovieVoteAverage);
-
-        trendingMovies.push(articleOfTrendinfMovies);
+        moviesArray.push(articleContainer);
     }); 
 
-    trendingMoviePreviewList.append(...trendingMovies)
+    aContainer.append(...moviesArray);
+}
+
+
+// Llamados a la API
+
+async function getTrendingMoviesPreview() {
+    const { data } = await api(`${END_POINT_TRENDING_DAY}`);
+    const trendingMoviess = data.results;
+
+    createMovies(trendingMoviess, trendingMoviePreviewList);
 
 }
 
@@ -85,36 +94,6 @@ async function getMoviesByCategory(id) {
 
     });
 
-    const genericSection = document.querySelector(".genericList-container");
-    const genericMovies = [];
-
-    data.results.forEach(dataOfGenericMovies => {
-        genericSection.innerHTML = ""; //limpia cada vez
-
-        const articleOfGenericMovies = document.createElement("article");
-        articleOfGenericMovies.className = "trending-movies-article-container";//ojo con la clase
-
-        const genericMoviePoster = document.createElement("img");
-        const urlGenericMoviePoster = dataOfGenericMovies.backdrop_path;
-        const genericMovieId = dataOfGenericMovies.id; //ojo con el id
-        genericMoviePoster.src = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlGenericMoviePoster}`
-        genericMoviePoster.className = "movie-poster movie-image"; //ojo con la clase
-        genericMoviePoster.alt = genericMovieId;
-
-        const genericMovieTitle = document.createElement("h2");
-        genericMovieTitle.textContent = dataOfGenericMovies.title;
-
-        
-
-        // const trendingMovieVoteAverage = document.createElement("h3");
-        // trendingMovieVoteAverage.textContent = dataOfTrendingMovies.vote_average;
-
-        articleOfGenericMovies.appendChild(genericMoviePoster);
-        articleOfGenericMovies.appendChild(genericMovieTitle);
-
-        genericMovies.push(articleOfGenericMovies);
-    }); 
-
-    genericSection.append(...genericMovies)
-
+    createMovies(data.results, genericSection);
+    
 }
