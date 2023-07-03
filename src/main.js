@@ -4,6 +4,7 @@ const END_POINT_TRENDING_DAY = "/trending/movie/day";
 const GENRE_END_POINT = "/genre/movie/list";
 const MOVIES_BY_CATEGORIES_END_POINT = "/discover/movie";
 const SEARCH_MOVIES = "/search/movie";
+const MOVIE_DETAILS = "/movie/";
 
 const api = axios.create({
     baseURL: "https://api.themoviedb.org/3",
@@ -27,22 +28,25 @@ function createMovies (arraysOfMovies, aContainer) {
         const articleContainer = document.createElement("article");
         articleContainer.classList.add = "trending-movies-article-container";
 
-        const MoviePoster = document.createElement("img");
+        const moviePoster = document.createElement("img");
         const urlMoviePoster = arrayOfMovie.poster_path;
-        const MovieId = arrayOfMovie.id;
-        MoviePoster.src = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlMoviePoster}`
-        MoviePoster.classList.add = "movie-poster movie-image";
-        MoviePoster.alt = MovieId;
+        const movieId = arrayOfMovie.id;
+        moviePoster.src = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlMoviePoster}`
+        moviePoster.classList.add = "movie-poster movie-image";
+        moviePoster.alt = movieId;
+        moviePoster.addEventListener("click", () => {
+            location.hash = `#movie=${movieId}`
+        })
 
-        const MovieTitle = document.createElement("h2");
-        MovieTitle.textContent = arrayOfMovie.title;
+        const movieTitle = document.createElement("h2");
+        movieTitle.textContent = arrayOfMovie.title;
 
-        const MovieVoteAverage = document.createElement("h3");
-        MovieVoteAverage.textContent = arrayOfMovie.vote_average;
+        const movieVoteAverage = document.createElement("h3");
+        movieVoteAverage.textContent = arrayOfMovie.vote_average;
 
-        articleContainer.appendChild(MoviePoster);
-        articleContainer.appendChild(MovieTitle);
-        articleContainer.appendChild(MovieVoteAverage);
+        articleContainer.appendChild(moviePoster);
+        articleContainer.appendChild(movieTitle);
+        articleContainer.appendChild(movieVoteAverage);
 
         moviesArray.push(articleContainer);
     }); 
@@ -50,6 +54,27 @@ function createMovies (arraysOfMovies, aContainer) {
     aContainer.append(...moviesArray);
 }
 
+function createCategories (categories, aContainer) {
+
+    aContainer.innerHTML = "";
+    const categoriesTypes = [];
+
+    categories.forEach(dataOfGenresMovies => {
+
+        const articleOfCategoriesMovies = document.createElement("article");
+        const categoryType = document.createElement("h3");
+        categoryType.textContent = dataOfGenresMovies.name;
+        categoryType.addEventListener("click", ()=> {
+            location.hash = `#category=${dataOfGenresMovies.id}-${dataOfGenresMovies.name}`});
+
+        articleOfCategoriesMovies.appendChild(categoryType);
+
+        categoriesTypes.push(articleOfCategoriesMovies);
+    }); 
+
+    aContainer.append(...categoriesTypes)
+
+}
 
 // Llamados a la API
 
@@ -65,25 +90,7 @@ async function getCategoriesMoviesPreview() {
 
     const { data } = await api(`${GENRE_END_POINT}`);
 
-    const categoriesPreviewList = document.querySelector(".categories-type-container");
-    const categoriesTypes = [];
-
-    data.genres.forEach(dataOfGenresMovies => {
-        categoriesPreviewList.innerHTML = ""; // limpia cada vez
-
-        const articleOfCategoriesMovies = document.createElement("article");
-
-        const categoryType = document.createElement("h3");
-        categoryType.textContent = dataOfGenresMovies.name;
-        categoryType.addEventListener("click", ()=> {
-            location.hash = `#category=${dataOfGenresMovies.id}-${dataOfGenresMovies.name}`});
-
-        articleOfCategoriesMovies.appendChild(categoryType);
-
-        categoriesTypes.push(articleOfCategoriesMovies);
-    }); 
-
-    categoriesPreviewList.append(...categoriesTypes)
+    createCategories (data.genres, categoriesPreviewList)
 
 }
 
@@ -118,3 +125,17 @@ async function getTrendingMoviesFull() {
     createMovies(trendingMoviess, genericSection);
 
 }
+
+async function getMovieById(id) {
+    const { data: movie } = await api(`${MOVIE_DETAILS}${id}`)
+
+    movieDetailTitle.textContent = movie.title;
+    movieDetailScore.textContent = movie.overview;
+    movieDetailDescription.textContent = movie.vote_average;
+
+    headerContainerLong.style.background = `url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path})`;
+
+
+    createCategories (movie.genres, movieDetailCategoriesList);
+
+};

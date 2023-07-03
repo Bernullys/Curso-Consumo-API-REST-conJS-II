@@ -48,8 +48,8 @@ const searchFormInput = document.querySelector("#search-form input")
 //const searchFormBtn=document.querySelector('#searchBtn');
 const searchFormBtn = document.querySelector("#searchBtn")
 
-const movieDetailTitle=document.querySelector('.movieDetail-title');
-const movieDetailScore=document.querySelector('.movieDetail-score');
-const movieDetailDescription=document.querySelector('.movieDetail-description');
+const movieDetailTitle=document.querySelector('.movie-detail-title');
+const movieDetailScore=document.querySelector('.movie-detail-score');
+const movieDetailDescription=document.querySelector('.movie-detail-description');
 const movieDetailCategoriesList=document.querySelector('#movieDetail .categories-list');
-const relatedMoviesContainer=document.querySelector('.relatedMovies-scrollContainer');
+const relatedMoviesContainer=document.querySelector('.related-movies-scroll-container');
