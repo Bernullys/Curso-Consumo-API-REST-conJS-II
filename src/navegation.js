@@ -5,7 +5,8 @@ trendingBtn.addEventListener("click", ()=>{
     location.hash = "#trends";
 });
 arrowBtn.addEventListener("click", ()=>{
-    location.hash = "home";
+    //location.hash = "home";
+    history.back();
 });
 
 
@@ -138,6 +139,9 @@ function trendPage() {
     categoriesPreviewSection.classList.add("inactive");
     genericSection.classList.remove("inactive");
     movieDetailSection.classList.add("inactive");
+
+    headerCategoryTitle.textContent = "All trends";
+    getTrendingMoviesFull();
 };
 
 
