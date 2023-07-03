@@ -5,6 +5,7 @@ const GENRE_END_POINT = "/genre/movie/list";
 const MOVIES_BY_CATEGORIES_END_POINT = "/discover/movie";
 const SEARCH_MOVIES = "/search/movie";
 const MOVIE_DETAILS = "/movie/";
+const RELATE_MOVIES = "/recommendations";
 
 const api = axios.create({
     baseURL: "https://api.themoviedb.org/3",
@@ -135,7 +136,15 @@ async function getMovieById(id) {
 
     headerContainerLong.style.background = `url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path})`;
 
-
     createCategories (movie.genres, movieDetailCategoriesList);
 
+    getRelatedMoviesId(id);
+
 };
+
+async function getRelatedMoviesId (id) {
+    const { data } = await api(`/movie/${id}${RELATE_MOVIES}`);
+    const relatedMovies = data.results;
+
+    createMovies(relatedMovies, relatedMoviesContainer);
+}
