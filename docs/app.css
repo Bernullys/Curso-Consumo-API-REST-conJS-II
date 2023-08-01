@@ -1,0 +1,81 @@
+:root {
+    --dark-full: #164B60;
+    --dark-medium: #1B6B93;
+    --dark-light: #4FC0D0;
+    --green: #A2FF86;
+
+    --font-family-titles: 'Dosis', sans-serif;
+    --font-family-text: 'Red Hat Display', sans-serif;
+
+    --sm: 12px;
+    --md: 16px;
+    --lg: 18px;
+    --xl: 25px;
+}
+
+body {
+    margin: 0;
+}
+
+.logo {
+    height: 36px;
+    margin-right: 24px;
+}
+
+.plus-sign {
+    margin-right: 24px;
+}
+
+.plus-sign,
+.search-sign {
+    height: 24px;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+    width: 100%;
+    background-color: var(--dark-full);
+}
+
+.nav-main-container {
+    display: flex;
+    height: 40px;
+    width: 100%;
+}
+
+.navs-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    width: 1300px;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.left-nav ul,
+.right-nav ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+}
+
+.left-nav ul li a,
+.right-nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: var(--sm);
+    font-weight: bolder;
+}
+
+.left-nav ul li a {
+    margin-right: 24px;
+}
+
+.right-nav ul li a {
+    margin-right: 24px;
+}
