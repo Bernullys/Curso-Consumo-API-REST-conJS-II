@@ -11,15 +11,155 @@
     <link rel="stylesheet" href="./styles/app.css">
 </head>
 <body>
-    <h1>BADR_Movies</h1>
+    <header>
+        <section class="navs-container">
+            <nav>
+                <img src="" alt="Logo __BADR__">
+                <section class="container-nav-left">
+                    <ul>
+                        <li>
+                            <a href="">Movies</a>
+                        </li>
+                        <li>
+                            <a href="">TV Shows</a>
+                        </li>
+                        <li>
+                            <a href="">People</a>
+                        </li>
+                        <li>
+                            <a href="">More</a>
+                        </li>
+                    </ul>
+                </section>
+                <section class="container-nav-right">
+                    <ul>
+                        <li>
+                            <img src="" alt="Logo +">
+                        </li>
+                        <li>
+                            <a href="">EN</a>
+                        </li>
+                        <li>
+                            <a href="">Login</a>
+                        </li>
+                        <li>
+                            <a href="">Join __BADR__</a>
+                        </li>
+                        <li>
+                            <button>
+                                <img src="" alt="Logo Search">
+                            </button>
+                        </li>
+                    </ul>
+            </nav>
+            <section class="title-and-search-container">
+                <article class="titles">
+                    <h1>Welcome to __BADR__ Movies Theater</h1>
+                    <h2>With TMDB find millions of movies, TV shows and more. Explore now⬇️</h2>
+                </article>
+            </section>
+        </section>
+    </header>
+
+    <div id="header" class="header2-main-container">
+        <div class="heder2-direct-container">
+            <span class="header-arrow">↩️</span>
+            <div class="header-container-long">
+                <!-- aqui va la imagen cuando se ve el detalle de una peli -->
+            </div>
+            <h1 class="header-title">__BADR__MOVIES__</h1>
+            <h1 class="categoryView">Action</h1>
+            <article class="search-form">
+                <form id="search-form" action="">
+                    <div class="input-button-container">
+                        <input type="text" placeholder="Search for a movie, tv show, person...">
+                        <button id="searchBtn" >🔍</button>
+                    </div>
+                </form>
+            </article>
+        </div>
+    </div>
     
+    <section id="trendingPreview" class="trending-compleate">
+        <article class="trending-title-button">
+            <h2 class="trending-title">Trending now</h2>
+            <button class="trending-button">All trends</button>
+        </article>
+        <section class="trending-movie-poster-description-container">
+            <!-- Aqui estoy colocando las peliculas en trending
+            con getTrendingMoviesPreview() -->
+        </section>
+    </section>
+
+    <section id="categories-container" class="categories-container">
+        <h2 class="categories-preview-title">Categories</h2>
+        <section class="categories-type-container">
+            <!-- Aqui estoy colocando las categorias de peliculas que tiene la aplicación
+                Solo los tipos () -->
+        </section>
 
 
+    </section>
+
+    <section id="genericList" class="genericList-main-container">
+        <section class="genericList-container">
+            <div class="movie-container">
+                <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aAngiE34BMFDTOXpjc04Lr8zsX1.jpg" alt="movie poster" class="movie-image">
+            </div>
+            <div class="movie-container">
+                <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aAngiE34BMFDTOXpjc04Lr8zsX1.jpg" alt="movie poster" class="movie-image">
+            </div>
+            <div class="movie-container">
+                <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aAngiE34BMFDTOXpjc04Lr8zsX1.jpg" alt="movie poster" class="movie-image">
+            </div>
+            <div class="movie-container">
+                <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aAngiE34BMFDTOXpjc04Lr8zsX1.jpg" alt="movie poster" class="movie-image">
+            </div>
+        </section>
+    </section>
+
+    <section id="movieDetail" class="movie-detail-container">
+        <h1 class="movie-detail-title">Deadpoll</h1>
+        <span class="movie-detail-score">7.6</span>
+        <p class="movie-detail-description">sdfsdfsdfdsfffffffffffffffzfndkasnfkbzfbsbfksbfkjbsdkjbfsjkdskjfksdjzfbkjsdzf</p>
+        <article class="categories-list">
+            <div class="categorie-list-container">
+                <h3 id="id28" class="category-title">Romance</h3>
+            </div>
+            <div class="categorie-list-container">
+                <h3 id="id34" class="category-title">Drama</h3>
+            </div>
+            <div class="categorie-list-container">
+                <h3 id="id98" class="category-title">Action</h3>
+            </div>
+        </article>
+
+        <article class="related-movies-container">
+            <h2 class="related-movies-title">Related movies</h2>
+            <div class="related-movies-scroll-container">
+                <div class="movie-container">
+                    <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="Movie name" class="movie-image">
+                </div>
+                <div class="movie-container">
+                    <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="Movie name" class="movie-image">
+                </div>
+                <div class="movie-container">
+                    <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="Movie name" class="movie-image">
+                </div>
+                <div class="movie-container">
+                    <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg" alt="Movie name" class="movie-image">
+                </div>
+            </div>
+        </article>
+    </section>
+
+    <footer>Buscar un footer descente</footer>
 
 
-
-
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="./src/secrests.js"></script>
+    <script src="./src/nodes.js"></script>
     <script src="./src/main.js"></script>
+    <script src="./src/navegation.js"></script>
 </body>
 </html>
