@@ -17,6 +17,10 @@ body {
     margin: 0;
 }
 
+.inactive {
+    display: none;
+}
+
 .logo {
     height: 36px;
     margin-right: 24px;
@@ -78,4 +82,126 @@ header {
 
 .right-nav ul li a {
     margin-right: 24px;
+}
+
+ /* footer styles */
+
+ .footer-container {
+    background-color: var(--dark-full);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding-top: 24px;
+ }
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footers-items-5 {
+    list-style: none;
+}
+
+.footers-items-5 h2 {
+    font-size: var(--sm);
+    color: white;
+
+}
+
+.footers-items-5 li a {
+    text-decoration: none;
+    font-size: var(--sm);
+    color: white;
+}
+
+.right-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
+.right-footer img {
+    height: 80px;
+    margin-bottom: 12px;
+}
+
+#footer-button {
+    color: #4FC0D0;
+    font-weight: bolder;
+    background-color: white;
+    border-radius: 5px;
+    border: none;
+    height: 32px;
+    cursor: pointer;
+}
+
+/* app styles */
+
+#search-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1B6B93;
+    margin-left: 150px;
+    margin-right: 150px;
+    padding: 24px;
+}
+
+.article-search-form {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#search-form {
+    display: flex;
+    width: 80%;
+}
+
+#input-search {
+    width: 70%;
+    height: 32px;
+    border: none;
+    padding: 0;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#search-button {
+    height: 32px;
+    border: none;
+    padding: 0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: var(--dark-light);
+    cursor: pointer;
+}
+
+#search-button:hover {
+    color: white;
+}
+
+/*home-view*/
+
+.home-view-main-container {
+}
+
+.home-article-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #A2FF86;
+    margin: 0 150px 0 150px;
+}
+
+#all-trends-button {
+    height: 48px;
+    width: 128px;
+    border: none;
+    padding: 0;
+    border-radius: 20px;
+    background-color: var(--dark-light);
+    cursor: pointer;
 }
