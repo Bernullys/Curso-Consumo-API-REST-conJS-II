@@ -30,17 +30,19 @@ function createMovies (arraysOfMovies, aContainer) {
         const urlMoviePoster = arrayOfMovie.poster_path;
         const movieId = arrayOfMovie.id;
         moviePoster.src = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlMoviePoster}`
-        //moviePoster.classList.add = "movie-poster movie-image";
-        //moviePoster.alt = movieId;
+        moviePoster.className = "movie-poster";
+        moviePoster.alt = movieId;
         moviePoster.addEventListener("click", () => {
             location.hash = `#movie=${movieId}`
         })
 
         const movieTitle = document.createElement("h2");
         movieTitle.textContent = arrayOfMovie.title;
+        movieTitle.className = "movie-title";
 
         const movieVoteAverage = document.createElement("h3");
-        movieVoteAverage.textContent = arrayOfMovie.vote_average;
+        movieVoteAverage.textContent = `Rating: ${arrayOfMovie.vote_average}`;
+        movieVoteAverage.className ="movie-rating";
 
         articleContainer.appendChild(moviePoster);
         articleContainer.appendChild(movieTitle);
@@ -74,7 +76,7 @@ function createCategories (categories, aContainer) {
 
 }
 
-const trendingMoviePreviewList = document.querySelector("#trending-movies-container");
+
 
 async function getTrendingMoviesPreview() {
     const { data } = await api(`${END_POINT_TRENDING_DAY}`);
@@ -84,4 +86,13 @@ async function getTrendingMoviesPreview() {
 
 }
 
+async function getCategoriesMoviesPreview() {
+
+    const {data} = await api(`${GENRE_END_POINT}`);
+
+    createCategories (data.genres, allCategories)
+
+}
+
 getTrendingMoviesPreview();
+getCategoriesMoviesPreview(); 
