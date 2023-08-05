@@ -69,7 +69,11 @@
 
         <h1 class="title">__BADR__</h1>
         <p class="description">App with The Movie Data Base</p>
-        <button id="back-button" class="inactive">Go-back</button>
+        <span id="back-button">Go-back</span>
+
+        <section id="one-movie-detail"></section>
+
+        <h1 class="category-type"></h1>
 
         <article class="article-search-form">
 
@@ -109,6 +113,36 @@
 
     </section>
 
+
+    <section id="generic-section-container">
+        <section class="genericList-container">
+            <div class="movie-container">
+                <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aAngiE34BMFDTOXpjc04Lr8zsX1.jpg" alt="movie poster" class="movie-image">
+            </div>
+            <div class="movie-container">
+                <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aAngiE34BMFDTOXpjc04Lr8zsX1.jpg" alt="movie poster" class="movie-image">
+            </div>
+            <div class="movie-container">
+                <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aAngiE34BMFDTOXpjc04Lr8zsX1.jpg" alt="movie poster" class="movie-image">
+            </div>
+            <div class="movie-container">
+                <img src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aAngiE34BMFDTOXpjc04Lr8zsX1.jpg" alt="movie poster" class="movie-image">
+            </div>
+        </section>
+
+    </section>
+
+    <section id="movieDetail">
+
+        <h1 class="movieDetail-title"></h1>
+        <span class="movieDetail-rating"></span>
+        <p class="movieDetail-description"></p>
+        <article class="movieDetail-related-categories"></article>
+    </section>
+
+    <section id="related-movies-container">
+        <article class="related-movies-scroll-container"></article>
+    </section>
 
 
 
@@ -233,10 +267,10 @@
         
     </section>
 
-
-    <script src="./secrets.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="./secrets.js"></script>
     <script src="./nodes.js"></script>
     <script src="./main.js"></script>
+    <script src="./navegation.js"></script>
 </body>
 </html>

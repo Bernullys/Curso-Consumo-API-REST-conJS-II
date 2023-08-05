@@ -16,6 +16,8 @@ const api = axios.create({
     },
 });
 
+// These two functions are helpers //////////////////////
+
 function createMovies (arraysOfMovies, aContainer) {
 
     aContainer.innerHTML = "";
@@ -76,6 +78,7 @@ function createCategories (categories, aContainer) {
 
 }
 
+/////////////////////////////////////////////////////////
 
 
 async function getTrendingMoviesPreview() {
@@ -94,5 +97,53 @@ async function getCategoriesMoviesPreview() {
 
 }
 
-getTrendingMoviesPreview();
-getCategoriesMoviesPreview(); 
+async function getMoviesByCategory(id) {
+    const {data} = await api(`${MOVIES_BY_CATEGORIES_END_POINT}`, {
+        params: {
+            with_genres: id,
+        },
+    });
+    
+    createMovies(data.results, genericSection);
+
+};
+
+async function getMoviesBySearch(query) {
+    const {data} = await api(`${SEARCH_MOVIES}`, {
+        params: {
+            query,
+        },
+    });
+
+    createMovies(data.results, genericSection);
+
+};
+
+async function getMovieById(id) {
+    const {data:movie} = await api(`${MOVIE_DETAILS}${id}`)
+
+    movieDetailTitle.textContent = movie.title;
+    movieDetailScore.textContent = movie.overview;
+    movieDetailDescription.textContent = movie.vote_average;
+
+    headerContainerLong.getElementsByClassName.background = `url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path})`;
+
+    createCategories (movie.genres, moviesDetail);
+
+    getRelatedMoviesId(id);
+
+};
+
+async function getRelatedMoviesId (id) {
+    const {data} = await api(`/movie/${id}${RELATE_MOVIES}`);
+    const relatedMovies = data.results;
+
+    createMovies(relatedMovies, relatedMovies);
+};
+
+async function getTrendingMoviesFull() {
+    const {data} = await api(`${END_POINT_TRENDING_DAY}`);
+    const trendingMoviesFull = data.results;
+
+    createMovies(trendingMoviesFull, genericSection);
+}
