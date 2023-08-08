@@ -35,7 +35,7 @@ function createMovies (arraysOfMovies, aContainer) {
         moviePoster.className = "movie-poster";
         moviePoster.alt = movieId;
         moviePoster.addEventListener("click", () => {
-            location.hash = `#movie=${movieId}`
+            location.hash = `#movie=${movieId}`;
         })
 
         const movieTitle = document.createElement("h2");
@@ -93,7 +93,7 @@ async function getCategoriesMoviesPreview() {
 
     const {data} = await api(`${GENRE_END_POINT}`);
 
-    createCategories (data.genres, allCategories)
+    createCategories (data.genres, allCategoriesContainer)
 
 }
 
@@ -120,13 +120,13 @@ async function getMoviesBySearch(query) {
 };
 
 async function getMovieById(id) {
-    const {data:movie} = await api(`${MOVIE_DETAILS}${id}`)
+    const {data: movie} = await api(`${MOVIE_DETAILS}${id}`)
 
     movieDetailTitle.textContent = movie.title;
-    movieDetailScore.textContent = movie.overview;
+    movieDetailRating.textContent = movie.overview;
     movieDetailDescription.textContent = movie.vote_average;
 
-    headerContainerLong.getElementsByClassName.background = `url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path})`;
+    oneMovieDetail.style.background = `url(https://www.themoviedb.org/t/p/w600_and_h900_bestv2${movie.poster_path})`;
 
     createCategories (movie.genres, moviesDetail);
 
@@ -138,7 +138,7 @@ async function getRelatedMoviesId (id) {
     const {data} = await api(`/movie/${id}${RELATE_MOVIES}`);
     const relatedMovies = data.results;
 
-    createMovies(relatedMovies, relatedMovies);
+    createMovies(relatedMovies, relatedMoviesContainer);
 };
 
 async function getTrendingMoviesFull() {

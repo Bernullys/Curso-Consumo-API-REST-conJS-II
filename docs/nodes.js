@@ -34,8 +34,9 @@ const movieDetailDescription = document.querySelector(".movieDetail-description"
 const movieDetailRelatedCategories = document.querySelector(".movieDetail-related-categories");
 
 
-const relatedMovies = document.querySelector("#related-movies-container");
+const relatedMoviesContainer = document.querySelector("#related-movies-container");
 const relatedMoviesScrollContainer = document.querySelector(".related-movies-scroll-container");
+
 
 
 
