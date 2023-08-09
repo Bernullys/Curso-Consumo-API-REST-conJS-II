@@ -164,9 +164,9 @@ function movieDetailPage() {
     relatedMoviesScrollContainer.classList.remove("inactive");
 
 
-    const [_, movieId] = location.hash.split("=");
+    const [_, movieIds] = location.hash.split("=");
 
-    getMovieById(movieId);
+    getMovieById(movieIds);
 
 };
 

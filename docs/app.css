@@ -200,6 +200,7 @@ header {
 /*home-view*/
 
 .home-view-main-container {
+    
 }
 
 .home-article-container {
@@ -223,7 +224,7 @@ header {
 #trending-movies-main-container {
     display: flex;
     justify-content: center;
-    margin: 0px 150px 16px 150px; 
+    margin: 0px 150px 16px 150px;
 }
 
 #trending-movies-container {
@@ -278,8 +279,36 @@ header {
     cursor: pointer;
 }
 
+/*others*/
+
 .generic-section-main-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+#one-movie-detail {
+    border-radius: 50px;
+}
+
+.movieDetail-title {
+    text-align: center;
+    margin-bottom: 0px;
+}
+
+.movieDetail-rating {
+    font-weight: bolder;
+    margin: 16px 0px 0px 200px;
+}
+
+.movieDetail-description {
+    text-justify: auto;
+    margin: 16px 200px 0px 200px;
+}
+
+#related-movies-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
