@@ -14,7 +14,7 @@ window.addEventListener("DOMContentLoaded", navigator, false); // llamamos la fu
 window.addEventListener("hashchange", navigator, false); // esto es para que llame la funcion cada vez que cambie el hash
 
 function navigator () {
-    console.log( { location }) // location es el que dice en que url estamos +
+    console.log( { location }) // location es el que dice en que url estamos
     if (location.hash.startsWith("#trends")) {
         trendPage();
     } else if  (location.hash.startsWith("#search=")) {
@@ -71,6 +71,8 @@ function homePage() {
     relatedMoviesContainer.classList.add("inactive");
     relatedMoviesScrollContainer.classList.add("inactive");
 
+    allTrendsSubTitle.classList.add("inactive");
+
     getTrendingMoviesPreview();
     getCategoriesMoviesPreview();
 
@@ -114,6 +116,8 @@ function categoryPage() {
 
     relatedMoviesContainer.classList.add("inactive");
     relatedMoviesScrollContainer.classList.add("inactive");
+
+    allTrendsSubTitle.classList.add("inactive");
 
 
     const [_, urlCategoryIdName] = location.hash.split("=");
@@ -163,6 +167,8 @@ function movieDetailPage() {
     relatedMoviesContainer.classList.remove("inactive");
     relatedMoviesScrollContainer.classList.remove("inactive");
 
+    allTrendsSubTitle.classList.add("inactive");
+
 
     const [_, movieIds] = location.hash.split("=");
 
@@ -208,6 +214,8 @@ function searchPage() {
     relatedMoviesContainer.classList.add("inactive");
     relatedMoviesScrollContainer.classList.add("inactive");
 
+    allTrendsSubTitle.classList.add("inactive");
+
 
     const [_, query] = location.hash.split("=");
     getMoviesBySearch(query);
@@ -251,6 +259,8 @@ function trendPage() {
 
     relatedMoviesContainer.classList.add("inactive");
     relatedMoviesScrollContainer.classList.add("inactive");
+
+    allTrendsSubTitle.classList.remove("inactive");
 
     getTrendingMoviesFull();
     

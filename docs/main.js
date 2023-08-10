@@ -26,7 +26,6 @@ function createMovies (arraysOfMovies, aContainer) {
     arraysOfMovies.forEach(arrayOfMovie => {
     
         const articleContainer = document.createElement("article");
-        //articleContainer.classList.add = "trending-movies-article-container";
 
         const moviePoster = document.createElement("img");
         const urlMoviePoster = arrayOfMovie.poster_path;
@@ -121,8 +120,6 @@ async function getMoviesBySearch(query) {
 
 async function getMovieById(id) {
     const {data: movie} = await api(`${MOVIE_DETAILS}${id}`);
-    console.log("this is the movie data");
-    console.log(movie);
 
     movieDetailTitle.textContent = movie.title;
     movieDetailRating.textContent = `Rating: ${movie.vote_average}`;

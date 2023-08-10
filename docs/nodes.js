@@ -40,3 +40,6 @@ const relatedMoviesScrollContainer = document.querySelector(".related-movies-scr
 
 const relatedMoviesSubTitle = document.querySelector(".related-movies-subtitle");
 
+
+const allTrendsSubTitle = document.querySelector(".a-t-subtitle");
+
