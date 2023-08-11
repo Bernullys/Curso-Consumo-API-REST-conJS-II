@@ -86,6 +86,9 @@ async function getTrendingMoviesPreview() {
 
     createMovies(trendingMoviess, trendingMoviePreviewList);
 
+    const skeleton = document.querySelector("#skeleton-trending-movies-container");
+    skeleton.style.display = "none";
+
 }
 
 async function getCategoriesMoviesPreview() {
