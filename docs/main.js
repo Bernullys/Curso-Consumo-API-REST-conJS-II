@@ -28,9 +28,9 @@ function createMovies (arraysOfMovies, aContainer, observed = false) {
     arraysOfMovies.forEach(arrayOfMovie => {
     
         const articleContainer = document.createElement("article");
-
         const moviePoster = document.createElement("img");
         const urlMoviePoster = arrayOfMovie.poster_path;
+        console.log(urlMoviePoster);
 
         //moviePoster.setAttribute("data-img", `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlMoviePoster}`);
         if (observed) {
@@ -45,6 +45,14 @@ function createMovies (arraysOfMovies, aContainer, observed = false) {
         moviePoster.addEventListener("click", () => {
             location.hash = `#movie=${movieId}`;
         })
+
+        if (urlMoviePoster === null) {
+            moviePoster.src = "https://images.pexels.com/photos/4271933/pexels-photo-4271933.jpeg?auto=compress&cs=tinysrgb&w=1600";
+        }
+        //other option to catch the images that don't charge:
+        // moviePoster.addEventListener("error", () => {
+        //     moviePoster.setAttribute("src", "https://images.pexels.com/photos/3747139/pexels-photo-3747139.jpeg?auto=compress&cs=tinysrgb&w=1600" )
+        // });
 
 
         if (observed) {
