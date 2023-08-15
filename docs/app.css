@@ -337,3 +337,19 @@ header {
     font-size: var(--sm);
     cursor: pointer;
 }
+
+/* skeletons */
+
+.skeleton-article {
+    background-color: rgb(220, 211, 211);
+    width: 300px;
+    height: 400px;
+    border-radius: 24px;
+    margin: 8px 12px 8px 0px;
+}
+
+.skeleton-categories h3 {
+    background-color: rgb(220, 211, 211);
+    width: 36px;
+    height: 24px;
+} 

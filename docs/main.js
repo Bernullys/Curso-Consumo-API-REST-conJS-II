@@ -1,3 +1,5 @@
+//import { registerImages } from "./lazy"; Don't know why don´t work importing from another file
+
 const API_BASE = "https://api.themoviedb.org/3";
 const END_POINT_TRENDING_DAY = "/trending/movie/day";
 const GENRE_END_POINT = "/genre/movie/list";
@@ -18,7 +20,7 @@ const api = axios.create({
 
 // These two functions are helpers //////////////////////
 
-function createMovies (arraysOfMovies, aContainer) {
+function createMovies (arraysOfMovies, aContainer, observed = false) {
 
     aContainer.innerHTML = "";
     const moviesHelperArray = [];
@@ -29,13 +31,27 @@ function createMovies (arraysOfMovies, aContainer) {
 
         const moviePoster = document.createElement("img");
         const urlMoviePoster = arrayOfMovie.poster_path;
+
+        //moviePoster.setAttribute("data-img", `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlMoviePoster}`);
+        if (observed) {
+            moviePoster.dataset.src = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlMoviePoster}`;
+        } else {
+            moviePoster.src = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlMoviePoster}`;
+        }
+
         const movieId = arrayOfMovie.id;
-        moviePoster.src = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlMoviePoster}`
         moviePoster.className = "movie-poster";
-        moviePoster.alt = movieId;
+        moviePoster.alt = arrayOfMovie.title;
         moviePoster.addEventListener("click", () => {
             location.hash = `#movie=${movieId}`;
         })
+
+
+        if (observed) {
+            observer.observe(moviePoster);
+            //registerImages(moviePoster);
+        };
+
 
         const movieTitle = document.createElement("h2");
         movieTitle.textContent = arrayOfMovie.title;
@@ -78,16 +94,28 @@ function createCategories (categories, aContainer) {
 }
 
 /////////////////////////////////////////////////////////
+////////// Lazy Loader //////////////////////////////////
 
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            //console.log(`This is entry: ${entry.target.setAttribute}`);
+            // const url = entry.target.getAttribute("data-img");
+            // entry.target.setAttribute("src", url);
+            const image = entry.target;
+            const url = image.dataset.src;
+            image.src = url;
+            observer.unobserve(image);
+        }
+    })
+})
+/////////////////////////////////////////////////////////
 
 async function getTrendingMoviesPreview() {
     const { data } = await api(`${END_POINT_TRENDING_DAY}`);
     const trendingMoviess = data.results;
 
-    createMovies(trendingMoviess, trendingMoviePreviewList);
-
-    const skeleton = document.querySelector("#skeleton-trending-movies-container");
-    skeleton.style.display = "none";
+    createMovies(trendingMoviess, trendingMoviePreviewList, true); 
 
 }
 
@@ -95,7 +123,8 @@ async function getCategoriesMoviesPreview() {
 
     const {data} = await api(`${GENRE_END_POINT}`);
 
-    createCategories (data.genres, allCategoriesContainer)
+    createCategories (data.genres, allCategoriesContainer);
+
 
 }
 
