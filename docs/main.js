@@ -20,9 +20,12 @@ const api = axios.create({
 
 // These two functions are helpers //////////////////////
 
-function createMovies (arraysOfMovies, aContainer, observed = false) {
+function createMovies (arraysOfMovies, aContainer, { observed = false, clean = true } = {}){
+    
+    if (clean) {
+        aContainer.innerHTML = "";
+    };
 
-    aContainer.innerHTML = "";
     const moviesHelperArray = [];
 
     arraysOfMovies.forEach(arrayOfMovie => {
@@ -185,5 +188,32 @@ async function getTrendingMoviesFull() {
     const {data} = await api(`${END_POINT_TRENDING_DAY}`);
     const trendingMoviesFull = data.results;
 
-    createMovies(trendingMoviesFull, genericSection);
+    createMovies(trendingMoviesFull, genericSection, { observed: true, clean: true });
+
+    const loadMoreButton = document.createElement("button");
+    loadMoreButton.textContent = "More";
+    genericSection.appendChild(loadMoreButton);
+    loadMoreButton.addEventListener("click", getMoreTrendingMoviesFull);
+    loadMoreButton.addEventListener("click", () => {genericSection.removeChild(loadMoreButton)});
+
+}
+
+let page = 1;
+async function getMoreTrendingMoviesFull () {
+    page++;
+    const {data} = await api(`${END_POINT_TRENDING_DAY}`, {
+        params: {
+            page,
+        },
+    });
+
+    const trendingMoviesFull = data.results;
+
+    createMovies(trendingMoviesFull, genericSection, { observed: true, clean: false });
+
+    const loadMoreButton = document.createElement("button");
+    loadMoreButton.textContent = "More";
+    genericSection.appendChild(loadMoreButton);
+    loadMoreButton.addEventListener("click", getMoreTrendingMoviesFull);
+    loadMoreButton.addEventListener("click", () => {genericSection.removeChild(loadMoreButton)});
 }
