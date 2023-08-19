@@ -146,6 +146,9 @@ function categoryPage() {
 
     getMoviesByCategory(urlCategoryId);
 
+    infiniteScroll = getMoreMoviesByCategory(urlCategoryId);
+
+
 };
 
 function movieDetailPage() {
@@ -238,6 +241,8 @@ function searchPage() {
 
     const [_, query] = location.hash.split("=");
     getMoviesBySearch(query);
+
+    infiniteScroll = getMoreMoviesBySearch(query);
 
 };
 

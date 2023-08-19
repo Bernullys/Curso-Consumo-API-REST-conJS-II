@@ -146,9 +146,38 @@ async function getMoviesByCategory(id) {
         },
     });
     
+    maxPage = data.total_pages;
+
     createMovies(data.results, genericSection);
 
 };
+
+function getMoreMoviesByCategory(id) {
+
+    return async function () {
+
+        const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+        const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
+    
+        const pageIsNotMax = page < maxPage;
+    
+        if (scrollIsBottom && pageIsNotMax) {
+            page++;
+            const {data} = await api(`${MOVIES_BY_CATEGORIES_END_POINT}`, {
+                params: {
+                    with_genres: id,
+                    page,
+                },
+            });
+        
+            const moviesByCategories = data.results;
+        
+            createMovies(moviesByCategories, genericSection, { observed: true, clean: false });
+        }
+
+    }
+
+}
 
 async function getMoviesBySearch(query) {
     const {data} = await api(`${SEARCH_MOVIES}`, {
@@ -157,9 +186,38 @@ async function getMoviesBySearch(query) {
         },
     });
 
+    maxPage = data.total_pages;
+
     createMovies(data.results, genericSection);
 
 };
+
+function getMoreMoviesBySearch (query) {
+
+    return async function () {
+
+        const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+        const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
+    
+        const pageIsNotMax = page < maxPage;
+    
+        if (scrollIsBottom && pageIsNotMax) {
+            page++;
+            const {data} = await api(`${SEARCH_MOVIES}`, {
+                params: {
+                    query,
+                    page,
+                },
+            });
+        
+            const moviesBySearch = data.results;
+        
+            createMovies(moviesBySearch, genericSection, { observed: true, clean: false });
+        }
+
+    }
+
+}
 
 async function getMovieById(id) {
     const {data: movie} = await api(`${MOVIE_DETAILS}${id}`);
@@ -192,17 +250,7 @@ async function getTrendingMoviesFull() {
 
     createMovies(trendingMoviesFull, genericSection, { observed: true, clean: true });
 
-    // const loadMoreButton = document.createElement("button");
-    // loadMoreButton.textContent = "More";
-    // genericSection.appendChild(loadMoreButton);
-    // loadMoreButton.addEventListener("click", getMoreTrendingMoviesFull);
-    // loadMoreButton.addEventListener("click", () => {genericSection.removeChild(loadMoreButton)});
-
 }
-
-
-
-
 
 async function getMoreTrendingMovies () {
 
@@ -224,9 +272,4 @@ async function getMoreTrendingMovies () {
         createMovies(trendingMoviesFull, genericSection, { observed: true, clean: false });
     }
 
-    // const loadMoreButton = document.createElement("button");
-    // loadMoreButton.textContent = "More";
-    // genericSection.appendChild(loadMoreButton);
-    // loadMoreButton.addEventListener("click", getMoreTrendingMoviesFull);
-    // loadMoreButton.addEventListener("click", () => {genericSection.removeChild(loadMoreButton)});
 }
