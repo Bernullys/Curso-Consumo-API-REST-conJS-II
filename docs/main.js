@@ -33,7 +33,7 @@ function createMovies (arraysOfMovies, aContainer, { observed = false, clean = t
         const articleContainer = document.createElement("article");
         const moviePoster = document.createElement("img");
         const urlMoviePoster = arrayOfMovie.poster_path;
-        console.log(urlMoviePoster);
+        //console.log(urlMoviePoster);
 
         //moviePoster.setAttribute("data-img", `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${urlMoviePoster}`);
         if (observed) {
@@ -190,30 +190,38 @@ async function getTrendingMoviesFull() {
 
     createMovies(trendingMoviesFull, genericSection, { observed: true, clean: true });
 
-    const loadMoreButton = document.createElement("button");
-    loadMoreButton.textContent = "More";
-    genericSection.appendChild(loadMoreButton);
-    loadMoreButton.addEventListener("click", getMoreTrendingMoviesFull);
-    loadMoreButton.addEventListener("click", () => {genericSection.removeChild(loadMoreButton)});
+    // const loadMoreButton = document.createElement("button");
+    // loadMoreButton.textContent = "More";
+    // genericSection.appendChild(loadMoreButton);
+    // loadMoreButton.addEventListener("click", getMoreTrendingMoviesFull);
+    // loadMoreButton.addEventListener("click", () => {genericSection.removeChild(loadMoreButton)});
 
 }
 
 let page = 1;
+
+window.addEventListener("scroll", getMoreTrendingMoviesFull);
+
 async function getMoreTrendingMoviesFull () {
-    page++;
-    const {data} = await api(`${END_POINT_TRENDING_DAY}`, {
-        params: {
-            page,
-        },
-    });
 
-    const trendingMoviesFull = data.results;
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement; // Desestructurando
+    const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
+    if (scrollIsBottom) {
+        page++;
+        const {data} = await api(`${END_POINT_TRENDING_DAY}`, {
+            params: {
+                page,
+            },
+        });
+    
+        const trendingMoviesFull = data.results;
+    
+        createMovies(trendingMoviesFull, genericSection, { observed: true, clean: false });
+    }
 
-    createMovies(trendingMoviesFull, genericSection, { observed: true, clean: false });
-
-    const loadMoreButton = document.createElement("button");
-    loadMoreButton.textContent = "More";
-    genericSection.appendChild(loadMoreButton);
-    loadMoreButton.addEventListener("click", getMoreTrendingMoviesFull);
-    loadMoreButton.addEventListener("click", () => {genericSection.removeChild(loadMoreButton)});
+    // const loadMoreButton = document.createElement("button");
+    // loadMoreButton.textContent = "More";
+    // genericSection.appendChild(loadMoreButton);
+    // loadMoreButton.addEventListener("click", getMoreTrendingMoviesFull);
+    // loadMoreButton.addEventListener("click", () => {genericSection.removeChild(loadMoreButton)});
 }
