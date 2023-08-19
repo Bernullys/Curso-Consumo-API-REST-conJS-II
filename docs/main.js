@@ -198,11 +198,11 @@ async function getTrendingMoviesFull() {
 
 }
 
-let page = 1;
 
-window.addEventListener("scroll", getMoreTrendingMoviesFull);
 
-async function getMoreTrendingMoviesFull () {
+
+
+async function getMoreMovies () {
 
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement; // Desestructurando
     const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;

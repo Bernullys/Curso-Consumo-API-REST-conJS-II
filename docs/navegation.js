@@ -1,3 +1,7 @@
+let page = 1; // se trae para aca para utilizarla en todas las paginas de navegación
+let infiniteScroll; // se deja vacia para que una vez se haga navegacion, se le pueda decir cual es el valor
+
+
 searchButton.addEventListener("click", ()=>{
     location.hash = `#search=${searchInput.value}`;
 });
@@ -12,9 +16,18 @@ backButton.addEventListener("click", ()=>{
 
 window.addEventListener("DOMContentLoaded", navigator, false); // llamamos la funcion tambien cuando cargue la pagina
 window.addEventListener("hashchange", navigator, false); // esto es para que llame la funcion cada vez que cambie el hash
+window.addEventListener("scroll", infiniteScroll, { passive: false }); // para llamar a la funcion cuando se hace infinite scrolling en general en todas las paginas
 
 function navigator () {
+
     console.log( { location }) // location es el que dice en que url estamos
+
+    if (infiniteScroll) {   // Cuando navegue entre paginas, se pregunta si se habia cargado el infiniteScroll, y si cumple se remueve
+        window.removeEventListener("scroll", infiniteScroll, { passive: false });
+        infiniteScroll = undefined;
+    }
+
+
     if (location.hash.startsWith("#trends")) {
         trendPage();
     } else if  (location.hash.startsWith("#search=")) {
@@ -31,6 +44,11 @@ function navigator () {
         top: 0,
         behavior:'smooth',
     });
+
+    if (infiniteScroll) { // despues de que navegue, si alguna funcion cargo el infiniteScroll, pues se llama
+        window.addEventListener("scroll", infiniteScroll, { passive: false });
+    }
+
 };
 
 function homePage() {
@@ -263,5 +281,7 @@ function trendPage() {
     allTrendsSubTitle.classList.remove("inactive");
 
     getTrendingMoviesFull();
+
+    infiniteScroll = getMoreMovies;
     
 };
