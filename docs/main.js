@@ -188,6 +188,8 @@ async function getTrendingMoviesFull() {
     const {data} = await api(`${END_POINT_TRENDING_DAY}`);
     const trendingMoviesFull = data.results;
 
+    maxPage = data.total_pages; // tenemos el maximo de paginas que se pueden cargar utilizando este consumo
+
     createMovies(trendingMoviesFull, genericSection, { observed: true, clean: true });
 
     // const loadMoreButton = document.createElement("button");
@@ -202,11 +204,14 @@ async function getTrendingMoviesFull() {
 
 
 
-async function getMoreMovies () {
+async function getMoreTrendingMovies () {
 
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement; // Desestructurando
     const scrollIsBottom = scrollTop + clientHeight >= scrollHeight - 15;
-    if (scrollIsBottom) {
+
+    const pageIsNotMax = page < maxPage;
+
+    if (scrollIsBottom && pageIsNotMax) {
         page++;
         const {data} = await api(`${END_POINT_TRENDING_DAY}`, {
             params: {

@@ -1,3 +1,4 @@
+let maxPag; // se inicializa una variable para que tome el valor maximo de paguinas que se pueden cargar por función
 let page = 1; // se trae para aca para utilizarla en todas las paginas de navegación
 let infiniteScroll; // se deja vacia para que una vez se haga navegacion, se le pueda decir cual es el valor
 
@@ -22,7 +23,7 @@ function navigator () {
 
     console.log( { location }) // location es el que dice en que url estamos
 
-    if (infiniteScroll) {   // Cuando navegue entre paginas, se pregunta si se habia cargado el infiniteScroll, y si cumple se remueve
+    if (infiniteScroll) {   // antes de que navegue entre paginas, se pregunta si se habia cargado el infiniteScroll, y si cumple se remueve
         window.removeEventListener("scroll", infiniteScroll, { passive: false });
         infiniteScroll = undefined;
     }
@@ -282,6 +283,6 @@ function trendPage() {
 
     getTrendingMoviesFull();
 
-    infiniteScroll = getMoreMovies;
+    infiniteScroll = getMoreTrendingMovies;
     
 };
