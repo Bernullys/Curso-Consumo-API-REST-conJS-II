@@ -57,6 +57,13 @@ function createMovies (arraysOfMovies, aContainer, { observed = false, clean = t
         //     moviePoster.setAttribute("src", "https://images.pexels.com/photos/3747139/pexels-photo-3747139.jpeg?auto=compress&cs=tinysrgb&w=1600" )
         // });
 
+        const likeButton = document.createElement("button");
+        likeButton.className = "like-button";
+        likeButton.addEventListener("click", () => {
+            likeButton.classList.toggle("liked-unliked-button");
+            //TODO
+        })
+
 
         if (observed) {
             observer.observe(moviePoster);
@@ -75,6 +82,7 @@ function createMovies (arraysOfMovies, aContainer, { observed = false, clean = t
         articleContainer.appendChild(moviePoster);
         articleContainer.appendChild(movieTitle);
         articleContainer.appendChild(movieVoteAverage);
+        articleContainer.appendChild(likeButton);
 
         moviesHelperArray.push(articleContainer);
     }); 
