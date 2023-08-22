@@ -329,11 +329,12 @@ header {
 }
 
 #generic-section-container {
-    align-items: center;
+    
 }
 
 #generic-section-container article {
     cursor: pointer;
+    position: relative;
 }
 
 #one-movie-detail {
@@ -360,6 +361,11 @@ header {
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
+}
+
+#related-movies-container article {
+    cursor: pointer;
+    position: relative;
 }
 
 .r-c-subtitle,

@@ -8,6 +8,8 @@ const SEARCH_MOVIES = "/search/movie";
 const MOVIE_DETAILS = "/movie/";
 const RELATE_MOVIES = "/recommendations";
 
+//These are functions  are helpers for data /////
+
 const api = axios.create({
     baseURL: "https://api.themoviedb.org/3",
     headers:{
@@ -17,6 +19,31 @@ const api = axios.create({
         "api_key": `${API_KEY}`,
     },
 });
+
+
+function likedMoviesList () {
+    const item = JSON.parse(localStorage.getItem("liked_movies"));
+    let arrayOfMovie;
+
+    if (item) {
+        arrayOfMovie = item;
+    } else{
+        arrayOfMovie = {};
+    }
+    return arrayOfMovie;
+}
+
+function likeOrunlike(arrayOfMovie) {
+    const likedMovies = likedMoviesList();
+    if (likedMovies[arrayOfMovie.id]) {
+        likedMovies[arrayOfMovie.id] = undefined;
+    } else {
+        likedMovies[arrayOfMovie.id] = arrayOfMovie;
+    }
+
+    localStorage.setItem("liked_movies",JSON.stringify(likedMovies));
+
+}
 
 // These two functions are helpers //////////////////////
 
@@ -61,7 +88,7 @@ function createMovies (arraysOfMovies, aContainer, { observed = false, clean = t
         likeButton.className = "like-button";
         likeButton.addEventListener("click", () => {
             likeButton.classList.toggle("liked-unliked-button");
-            //TODO
+            likeOrunlike(arrayOfMovie);
         })
 
 
