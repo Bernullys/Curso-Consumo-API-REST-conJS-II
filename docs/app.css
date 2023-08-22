@@ -239,7 +239,8 @@ header {
     white-space: nowrap;
 }
 
-#trending-movies-container article {
+#trending-movies-container article,
+#favorites-movies-container article {
     cursor: pointer;
     position: relative;
 }

@@ -40,9 +40,7 @@ function likeOrunlike(arrayOfMovie) {
     } else {
         likedMovies[arrayOfMovie.id] = arrayOfMovie;
     }
-
     localStorage.setItem("liked_movies",JSON.stringify(likedMovies));
-
 }
 
 // These two functions are helpers //////////////////////
@@ -86,9 +84,15 @@ function createMovies (arraysOfMovies, aContainer, { observed = false, clean = t
 
         const likeButton = document.createElement("button");
         likeButton.className = "like-button";
+
+        //esto es para que cuando se guarde en favoritos se guarde con la clase marcada en favoritos//
+        // si esta guardada en favorito se le agrega la clase, sino no hace nada
+        likedMoviesList()[arrayOfMovie.id] && likeButton.classList.add("liked-unliked-button");
+
         likeButton.addEventListener("click", () => {
             likeButton.classList.toggle("liked-unliked-button");
             likeOrunlike(arrayOfMovie);
+            homePage();
         })
 
 
@@ -307,4 +311,13 @@ async function getMoreTrendingMovies () {
         createMovies(trendingMoviesFull, genericSection, { observed: true, clean: false });
     }
 
+}
+
+function getLikedMovies() {
+    const likedMovies = likedMoviesList();
+    const moviesLikedArrays = Object.values(likedMovies);
+
+    createMovies(moviesLikedArrays, likedMoviesSection, { observed: true, clean: true });
+
+    console.log(likedMovies);
 }

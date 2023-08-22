@@ -43,3 +43,7 @@ const relatedMoviesSubTitle = document.querySelector(".related-movies-subtitle")
 
 const allTrendsSubTitle = document.querySelector(".a-t-subtitle");
 
+const likedMoviesMainContainer = document.querySelector("#liked");
+
+const likedMoviesSection = document.querySelector("#favorites-movies-container");
+
