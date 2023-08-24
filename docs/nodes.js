@@ -25,6 +25,7 @@ const allCategories = document.querySelector(".categories");
 
 
 const genericSection = document.querySelector("#generic-section-container");
+const lastContainer = document.querySelector("#last-container");
 
 
 const moviesDetail = document.querySelector("#movieDetail");

@@ -23,6 +23,7 @@ function navigator () {
 
     console.log( { location }) // location es el que dice en que url estamos
 
+
     if (infiniteScroll) {   // antes de que navegue entre paginas, se pregunta si se habia cargado el infiniteScroll, y si cumple se remueve
         window.removeEventListener("scroll", infiniteScroll, { passive: false });
         infiniteScroll = undefined;
@@ -37,7 +38,7 @@ function navigator () {
         movieDetailPage();
     } else if  (location.hash.startsWith("#category=")) {
         categoryPage();
-    } else{
+    } else if (location.hash.startsWith("")) {
         homePage();
     }
 
@@ -80,6 +81,7 @@ function homePage() {
     allCategories.classList.remove("inactive");
 
     genericSection.classList.add("inactive");
+    lastContainer.classList.add("inactive");
 
     moviesDetail.classList.add("inactive");
     movieDetailTitle.classList.add("inactive");
@@ -129,6 +131,7 @@ function categoryPage() {
     allCategories.classList.add("inactive");
 
     genericSection.classList.remove("inactive");
+    lastContainer.classList.remove("inactive");
 
     moviesDetail.classList.add("inactive");
     movieDetailTitle.classList.add("inactive");
@@ -184,6 +187,7 @@ function movieDetailPage() {
     allCategories.classList.add("inactive");
 
     genericSection.classList.add("inactive");
+    lastContainer.classList.add("inactive");
 
     moviesDetail.classList.remove("inactive");
     movieDetailTitle.classList.remove("inactive");
@@ -233,6 +237,7 @@ function searchPage() {
     allCategories.classList.add("inactive");
 
     genericSection.classList.remove("inactive");
+    lastContainer.classList.remove("inactive");
 
     moviesDetail.classList.add("inactive");
     movieDetailTitle.classList.add("inactive");
@@ -283,6 +288,7 @@ function trendPage() {
     allCategories.classList.add("inactive");
 
     genericSection.classList.remove("inactive");
+    lastContainer.classList.remove("inactive");
 
     moviesDetail.classList.add("inactive");
     movieDetailTitle.classList.add("inactive");

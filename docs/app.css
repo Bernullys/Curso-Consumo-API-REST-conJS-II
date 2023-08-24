@@ -259,6 +259,7 @@ header {
     font-size: var(--md);
     margin: 0;
     color: var(--dark-light);
+    max-width: 300px;
 }
 
 .like-button {
@@ -330,7 +331,9 @@ header {
 }
 
 #generic-section-container {
-    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 #generic-section-container article {

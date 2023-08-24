@@ -74,13 +74,10 @@ function createMovies (arraysOfMovies, aContainer, { observed = false, clean = t
             location.hash = `#movie=${movieId}`;
         })
 
-        if (urlMoviePoster === null) {
-            moviePoster.src = "https://images.pexels.com/photos/4271933/pexels-photo-4271933.jpeg?auto=compress&cs=tinysrgb&w=1600";
-        }
-        //other option to catch the images that don't charge:
-        // moviePoster.addEventListener("error", () => {
-        //     moviePoster.setAttribute("src", "https://images.pexels.com/photos/3747139/pexels-photo-3747139.jpeg?auto=compress&cs=tinysrgb&w=1600" )
-        // });
+        //to catch the images that don't charge:
+        moviePoster.addEventListener("error", () => {
+            moviePoster.setAttribute("src", "https://images.pexels.com/photos/3747139/pexels-photo-3747139.jpeg?auto=compress&cs=tinysrgb&w=1600" )
+        });
 
         const likeButton = document.createElement("button");
         likeButton.className = "like-button";
@@ -89,12 +86,17 @@ function createMovies (arraysOfMovies, aContainer, { observed = false, clean = t
         // si esta guardada en favorito se le agrega la clase, sino no hace nada
         likedMoviesList()[arrayOfMovie.id] && likeButton.classList.add("liked-unliked-button");
 
+        ///////////////////////////////////////////////////////////////////
         likeButton.addEventListener("click", () => {
             likeButton.classList.toggle("liked-unliked-button");
-            likeOrunlike(arrayOfMovie);
-            homePage();
+            if (location.hash != "") {
+                likeOrunlike(arrayOfMovie);
+            } else {
+                likeOrunlike(arrayOfMovie);
+                homePage();
+            }
         })
-
+        ////////////////////////////////////////////////////////////////////
 
         if (observed) {
             observer.observe(moviePoster);
