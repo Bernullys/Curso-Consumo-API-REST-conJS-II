@@ -84,6 +84,15 @@ header {
     margin-right: 24px;
 }
 
+#lang {
+    margin-right: 24px;
+    font-size: var(--sm);
+    color: white;
+    background-color: #164B60;
+    border: none;
+    cursor: pointer;
+}
+
  /* footer styles */
 
  .footer-container {

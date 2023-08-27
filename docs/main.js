@@ -7,6 +7,7 @@ const MOVIES_BY_CATEGORIES_END_POINT = "/discover/movie";
 const SEARCH_MOVIES = "/search/movie";
 const MOVIE_DETAILS = "/movie/";
 const RELATE_MOVIES = "/recommendations";
+const TRANSLATER = "/configuration/languages";
 
 //These are functions  are helpers for data /////
 
@@ -27,11 +28,14 @@ function likedMoviesList () {
 
     if (item) {
         arrayOfMovie = item;
+        //console.log(arrayOfMovie);
     } else{
         arrayOfMovie = {};
+        //console.log(arrayOfMovie);
     }
     return arrayOfMovie;
 }
+
 
 function likeOrunlike(arrayOfMovie) {
     const likedMovies = likedMoviesList();
@@ -318,8 +322,19 @@ async function getMoreTrendingMovies () {
 function getLikedMovies() {
     const likedMovies = likedMoviesList();
     const moviesLikedArrays = Object.values(likedMovies);
-
     createMovies(moviesLikedArrays, likedMoviesSection, { observed: true, clean: true });
-
     console.log(likedMovies);
 }
+
+// async function translater() {
+//     const {data} = await api(`${TRANSLATER}`);
+//     const bislama = data[0].english_name;
+//     const german = data[5].english_name;
+//     const latin = data[17].english_name;
+//     const english = data[38].english_name;
+//     const japanese = data[89].english_name;
+//     const espanol = data[165].english_name;
+//     console.log(espanol);
+// }
+
+// translater();
