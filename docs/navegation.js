@@ -94,6 +94,7 @@ function homePage() {
 
     allTrendsSubTitle.classList.add("inactive");
 
+    likedMoviesMainContainer.classList.remove("inactive");
 
     getTrendingMoviesPreview();
     getCategoriesMoviesPreview();
